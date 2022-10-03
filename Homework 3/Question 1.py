@@ -19,34 +19,42 @@
 
 
 # find the first 2 numbers on a list which sum to a desired value
-def solution(list, num): 
-    a=0 
-    b=0
-    checked=[]
-    for i in list: # iterate over the provided list
-        j = 0 # list indexer
-        test = list.pop(0)
-        # pop(0) will return the value of the first list item and remove it from the list
-        # this will reduce the size of the list per iteration
-        # as well as avoid re-calculating numbers e.g. 11+7 and 7+11
-        while True:
-            # I want do do a while loop to test the sum of the iterator to the remaining list items
-            if test + list[j] == num:
-                a = test
-                b = list[j]
-                break # if the sum is my desired number, break the while loop
-            else: # if not, increase the list indexer by 1
-                j+=1
-                if j >= (len(list)-1): # if the list indexer becomes larger than the length of the remaining list, break
-                    break
-                else:
-                    continue
-    if a==0 and b==0:
-        return None # return None for no solution
-    else:
-        return a, b 
-  
+def solution(numbers, num):
+    new_list = numbers.copy() # O(1)
+    try:
+        # iterate over the provided list
+        for i in numbers: # O(n)
+            # list indexer
+            j = 0 # O(1)
+            test = new_list.pop(0) # O(1)
+            # pop(0) will return the value of the first list item and remove it from the list
+            # this will reduce the size of the list per iteration
+            # as well as avoid re-calculating numbers e.g. 11+7 and 7+11
+            while True: # O(1)
+                # if the list indexer becomes larger than the length of the remaining list, break
+                if j >= len(new_list): # O(1)
+                    break # O(1)
+                # I want to check the sum of the iterator to the remaining list items
+                if test + new_list[j] == num: # O(1)
+                    a = test # O(1)
+                    b = new_list[j] # O(1)
+                    raise StopIteration # O(1)
+                else: # O(1)
+                    # if not, increase the list indexer by 1
+                    j+=1 # n*O(1)
+
+    except StopIteration: # O(1)
+        pass # O(1)
+        if a==0 and b==0: # O(1) 
+            return str # O(1)
+        else: # O(1)
+            return a, b # O(1)
+import random  
 numbers = [0, 21, 78, 19, 90, 13] 
 print(solution(numbers, 21))
 print(solution(numbers, 25))
-
+numbers = [1, 14, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] 
+print(solution(numbers, 15))
+print(solution(numbers, 25))
+numbers = random.sample(range(0,50),50)
+print(solution(numbers,43))
