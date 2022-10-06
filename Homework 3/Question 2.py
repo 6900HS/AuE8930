@@ -22,7 +22,6 @@ def solution(root):
 # therefore, to obtain max depth, the "ancestor" node must be known
     if root is None: 
         return 0
-    if root is 
     else:
         # check each subtree depth
         # recursion
