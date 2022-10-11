@@ -30,12 +30,12 @@ def plan(event):
         cv.create_oval( event.x-5, event.y-5, event.x+5, event.y+5, fill = "red" )
 
         # uncomment below for a_star_occupancy
-        #path, path_px = a_star_occupancy(start_node, goal_node, copy.deepcopy(gmap), movement='8N')
-        #if path_px:
+        path, path_px = a_star_occupancy(start_node, goal_node, copy.deepcopy(gmap), movement='8N')
+        if path_px:
             ## plot resulting path in pixels over the map
-        #    plot_on_canvas(path_px, cv, color="yellow", width=4)
-        #else:
-        #    print('Goal is not reachable')
+            plot_on_canvas(path_px, cv, color="yellow", width=4)
+        else:
+            print('Goal is not reachable')
 
         # uncomment below for dijkstra_occupancy
         path, path_px = dijkstra_occupancy(start_node, goal_node, gmap, movement='8N')
